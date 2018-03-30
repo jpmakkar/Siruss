@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.hp2.sirus.MainActivity"
+    android:background="@drawable/b3"
+    android:padding="10dp"
+    tools:showIn="@layout/app_bar_main">
+
+    <ListView
+        android:id="@+id/listtext"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="95.72" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="60"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:id="@+id/editTextquery"
+            android:hint="How Can i assist U ?"
+            android:textColorHint="@android:color/darker_gray"
+            android:background="@drawable/edittextnn"
+            />
+
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="10"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/j5"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

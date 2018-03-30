@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bb"
+    tools:context="com.example.hp2.sirus.SplashScreen">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="262dp"
+        android:layout_height="83dp"
+        android:layout_gravity="center"
+        android:text="SIRUS"
+
+        android:textColor="@android:color/white"
+        android:textSize="48dp" />
+
+
+</FrameLayout>
