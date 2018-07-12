@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:id="@+id/layout"
+    android:background="@drawable/sss"
+    tools:context="com.example.hp2.sirus.Music">
+
+    <ImageView
+        android:id="@+id/imagesong"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/music"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:text="song"
+        android:textSize="16dp"
+        android:id="@+id/textsong"
+        android:textColor="@android:color/white"/>
+
+    <com.dualcores.swagpoints.SwagPoints
+        xmlns:swagpoints="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/seekbar_point"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:padding="64dp"
+        swagpoints:min="0"
+        swagpoints:max="100"
+        swagpoints:step="1"
+        swagpoints:progressColor="@color/color_progress"
+        swagpoints:progressWidth="12dp"
+        swagpoints:arcColor="@color/color_arc"
+        swagpoints:arcWidth="8dp"
+        swagpoints:textSize="24dp"
+        swagpoints:textColor="@android:color/white"
+        swagpoints:indicatorIcon="@drawable/indicator"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|bottom"
+
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/jprevious"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            />
+
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/jpause"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            />
+
+        <ImageButton
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/jnext"
+            android:background="@null"/>
+    </LinearLayout>
+</LinearLayout>
+
+
+

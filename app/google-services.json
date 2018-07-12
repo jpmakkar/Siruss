@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "455623989548",
+    "firebase_url": "https://sirus-da60d.firebaseio.com",
+    "project_id": "sirus-da60d",
+    "storage_bucket": "sirus-da60d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455623989548:android:3d93087310dafc8e",
+        "android_client_info": {
+          "package_name": "com.example.hp2.sirus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455623989548-pcck9c21vhtb0vk2rgbpufen7ucutdcc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hp2.sirus",
+            "certificate_hash": "edfbe5da5d9dfc4bd7f50d5983f1331812fb19a8"
+          }
+        },
+        {
+          "client_id": "455623989548-6tbsom1uuqhhj6bhsqgr1daet1ktsnej.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "455623989548-uuvits8sbiib9933lcoj4mnl7p5h8odg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB00Cpl2w_KIvR7AoiCd_j9HCL1wf_aAmI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455623989548-6tbsom1uuqhhj6bhsqgr1daet1ktsnej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,7 +17,7 @@
 
         <item
             android:id="@+id/social"
-            android:title="Social" />
+            android:title="Game" />
 
         <item
             android:id="@+id/music"

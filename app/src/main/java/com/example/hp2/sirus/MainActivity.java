@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        /*int id = item.getItemId();
+        int id = item.getItemId();
         Intent i = null;
         if (id == R.id.home) {
             i = new Intent(this, MainActivity.class);
@@ -366,19 +366,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.music) {
             i = new Intent(this, Contacts.class);
         } else if (id == R.id.distance) {
-            i = new Intent(this, DistanceCalculation.class);
+            i = new Intent(this, WheatherActivity.class);
         } else if (id == R.id.location) {
-            i = new Intent(this, LocationFetch.class);
+            i = new Intent(this, com.example.hp2.sirus.Location.class);
         } else if (id == R.id.social) {
-            i = new Intent(this, Social.class);
+            i = new Intent(this, TicTacToe.class);
         } else if (id == R.id.aboutus) {
-            i = new Intent(this, AboutUs.class);
+            i = new Intent(this, Timetable.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         startActivity(i);
-*/
+
         return true;
     }
 
@@ -743,11 +743,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             f = "Good Night " + name;
                         }
                         speak(f, 1);
-                    } else if (se.contains("time")) {
+                    }  else if (se.contains("weather")) {
+                        speak("Sure " + name, 1);
+                        Intent i = new Intent(MainActivity.this, WheatherActivity.class);
+
+                        startActivity(i);
+                    }else if (se.contains("time table")) {
+                        speak("Sure " + name, 1);
+                        Intent i = new Intent(MainActivity.this, Timetable.class);
+
+                        startActivity(i);
+                    }
+                    else if (se.contains("time")) {
                         Calendar d = Calendar.getInstance();
                         SimpleDateFormat frmt = new SimpleDateFormat("hh:mm:ss a");
                         speak(frmt.format(d.getTime()).toString(), 1);
-                    } else if (se.contains("+")) {
+                    }
+                    else if (se.contains("news")) {
+                        speak("Sure " + name, 1);
+                        Intent i = new Intent(MainActivity.this, NewsActivity.class);
+
+                        startActivity(i);
+                    }  else if (se.contains("+")) {
                         try {
                             int a = Integer.parseInt(se.substring(0, se.indexOf('+')).trim());
                             int b = Integer.parseInt(se.substring(se.indexOf('+') + 1, se.length()).trim());
@@ -783,7 +800,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         } catch (Exception e) {
                             speak("Please Enter A Valid Number", 1);
                         }
-                    } else if (parameterString.equals("music")) {
+                    } else if (se.equals("music")) {
                         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(MainActivity.this,
                                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
@@ -800,11 +817,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         }
                         c.close();
-                        // Intent i = new Intent(MainActivity.this, Music.class);
+                         Intent i = new Intent(MainActivity.this, Music.class);
                         Collections.shuffle(arrayList);
-                       // i.putExtra("Path", arrayList);
-                       // startActivity(i);
-                    } else if (se.toLowerCase().contains("sms")) {
+                        i.putExtra("Path", arrayList);
+                        startActivity(i);
+                    } else if(se.toLowerCase().contains ("game")) {
+                        speak("Sure " + name, 1);
+                        Intent i=new Intent(MainActivity.this,TicTacToe.class);
+                        startActivity(i);
+                    }else if(se.toLowerCase().contains ("contacts")) {
+                        speak("Sure " + name, 1);
+                        Intent i=new Intent(MainActivity.this,Contacts.class);
+                        startActivity(i);
+                    }else if(se.toLowerCase().contains ("location")) {
+                        speak("Sure " + name, 1);
+                        Intent i=new Intent(MainActivity.this, com.example.hp2.sirus.Location.class);
+                        startActivity(i);
+                    }
+
+                    else if (se.toLowerCase().contains("sms")) {
                         String namep = se.toLowerCase().substring(se.toLowerCase().indexOf("sms") + 4, se.toLowerCase().indexOf("that")).trim();
                         boolean found = false;
                         ContentResolver resolver = getContentResolver();
@@ -845,6 +876,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
 
 
+                    }
+                    else if(se.toLowerCase().contains("alarm")){
+                        if(se.toLowerCase().contains("minutes")||se.toLowerCase().contains("minute")){
+                            int s=Integer.parseInt(se.substring(se.toLowerCase().indexOf("for")+3,se.toLowerCase().indexOf("minu")).trim());
+                            Calendar c=Calendar.getInstance();
+                            if(c.get(Calendar.MINUTE)+s<60){
+                                c.set(Calendar.MINUTE,s+c.get(Calendar.MINUTE));
+                                c.set(Calendar.SECOND,00);
+                            }else{
+                                c.set(Calendar.HOUR_OF_DAY,c.get(Calendar.HOUR_OF_DAY)+1);
+                                c.set(Calendar.MINUTE,s-(60-c.get(Calendar.MINUTE)));
+                                c.set(Calendar.SECOND,00);
+                            }
+                            Intent intent=new Intent(MainActivity.this,AlramRing.class);
+                            intent.putExtra("message","Wake Up "+name);
+                            PendingIntent pendingIntent=PendingIntent.getActivity(getApplicationContext(),(int)(Math.random()*100),intent,0);
+                            alarmManager.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
+                            speak( "Alarm set for "+s+" minutes from now",1);
+                        }
+
+                        else{
+                            speak("Can U please Enter?",1);
+                            publishProgress(15);
+                        }
+
+                    }
+                    else if(se.toLowerCase().contains("remind me to")){
+                        reminder=se.substring(se.toLowerCase().indexOf("to")+2);
+                        speak("When Do u want me to remind you ?",1);
+                        publishProgress(10);
+                    }
+
+
+                    else if(se.toLowerCase().contains("silent mode off")) {
+                        PackageManager pm  = MainActivity.this.getPackageManager();
+                        ComponentName componentName = new ComponentName(MainActivity.this, Ai.class);
+                        pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                                PackageManager.DONT_KILL_APP);
+                        speak("I will be Speaking",1);
+                    }
+                    else if(se.toLowerCase().contains("silent mode on")) {
+                        PackageManager pm  = MainActivity.this.getPackageManager();
+                        ComponentName componentName = new ComponentName(MainActivity.this, Ai.class);
+                        pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                                PackageManager.DONT_KILL_APP);
+                        speak("I will be Silent",1);
                     }
                     else{
                         speak(parameterString,1);
@@ -962,13 +1039,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 i1=m-(m-i1);
                             }
                         }
-                       /* Intent intent=new Intent(MainActivity.this,AlramRing.class);
+                      Intent intent=new Intent(MainActivity.this,AlramRing.class);
                         intent.putExtra("message","Wake Up "+name);
                         PendingIntent pendingIntent=PendingIntent.getActivity(getApplicationContext(),(int)(Math.random()*100),intent,0);
                         alarmManager.set(AlarmManager.RTC_WAKEUP,c1.getTimeInMillis(),pendingIntent);
                         speak("Alarm set for "+i+" Hours and "+i1+" minutes from now",1);
                         Toast.makeText(getApplicationContext(),"Alarm set for "+i+" Hours and "+i1+" minutes from now",Toast.LENGTH_LONG).show();
-             */       }
+                    }
                 };
 
                 timePickerDialog = new TimePickerDialog(MainActivity.this,t,hh,mm,true);
